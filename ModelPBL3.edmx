@@ -1,0 +1,878 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PBL3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="account_type" Type="int" />
+        </EntityType>
+        <EntityType Name="CDVN">
+          <Key>
+            <PropertyRef Name="ID_CD" />
+          </Key>
+          <Property Name="ID_CD" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="HoTenCD" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgaySinhCD" Type="date" />
+          <Property Name="DiaChi_CD" Type="nvarchar(max)" />
+          <Property Name="TT_hn" Type="nvarchar(max)" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="3" />
+          <Property Name="Email_CD" Type="nvarchar(max)" />
+          <Property Name="SDT_CD" Type="nvarchar" MaxLength="11" />
+          <Property Name="ID_Chuho" Type="nvarchar" MaxLength="10" />
+          <Property Name="TATS" Type="nvarchar" MaxLength="10" />
+          <Property Name="Anh" Type="image" />
+          <Property Name="Noti_count" Type="int" />
+        </EntityType>
+        <EntityType Name="CQTQ">
+          <Key>
+            <PropertyRef Name="ID_CQTQ" />
+          </Key>
+          <Property Name="ID_CQTQ" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name_CQTQ" Type="nvarchar" MaxLength="50" />
+          <Property Name="TT" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="FreeTime">
+          <Key>
+            <PropertyRef Name="ID_FreeTime" />
+          </Key>
+          <Property Name="ID_FreeTime" Type="int" Nullable="false" />
+          <Property Name="ID_CQTQ" Type="nvarchar" MaxLength="10" />
+          <Property Name="Start_time" Type="time" Precision="7" />
+          <Property Name="End_time" Type="time" Precision="7" />
+          <Property Name="Max_per" Type="int" />
+        </EntityType>
+        <EntityType Name="LDVN">
+          <Key>
+            <PropertyRef Name="ID_LD" />
+          </Key>
+          <Property Name="ID_LD" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="HoTenLD" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgaySinhLD" Type="date" />
+          <Property Name="DiaChi_LD" Type="nvarchar(max)" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="3" />
+          <Property Name="Email_LD" Type="nvarchar(max)" />
+          <Property Name="SDT_LD" Type="nvarchar" MaxLength="11" />
+          <Property Name="Chucvu" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_CQTQ" Type="nvarchar" MaxLength="10" />
+          <Property Name="Anh" Type="image" />
+        </EntityType>
+        <EntityType Name="Lichhen">
+          <Key>
+            <PropertyRef Name="ID_Lichhen" />
+          </Key>
+          <Property Name="ID_Lichhen" Type="int" Nullable="false" />
+          <Property Name="ID_CD" Type="nvarchar" MaxLength="10" />
+          <Property Name="ID_CQTQ" Type="nvarchar" MaxLength="10" />
+          <Property Name="Time" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Date_hen" Type="date" />
+          <Property Name="TG" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Map">
+          <Key>
+            <PropertyRef Name="ID_Map" />
+          </Key>
+          <Property Name="ID_Map" Type="int" Nullable="false" />
+          <Property Name="DiaChi1" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="DiaChi2" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Nhiemvu">
+          <Key>
+            <PropertyRef Name="Name_CQTQ" />
+          </Key>
+          <Property Name="Name_CQTQ" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NV" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Quyenhan">
+          <Key>
+            <PropertyRef Name="Chucvu" />
+          </Key>
+          <Property Name="Chucvu" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="QH" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Thongbao">
+          <Key>
+            <PropertyRef Name="ID_Thongbao" />
+          </Key>
+          <Property Name="ID_Thongbao" Type="int" Nullable="false" />
+          <Property Name="ID_CD" Type="nvarchar" MaxLength="10" />
+          <Property Name="ID_CQTQ" Type="nvarchar" MaxLength="10" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="ND" Type="nvarchar(max)" />
+          <Property Name="Date_sent" Type="date" />
+        </EntityType>
+        <EntityType Name="Yeucau">
+          <Key>
+            <PropertyRef Name="ID_Yeucau" />
+          </Key>
+          <Property Name="ID_Yeucau" Type="int" Nullable="false" />
+          <Property Name="ID_1" Type="nvarchar" MaxLength="10" />
+          <Property Name="ID_2" Type="nvarchar" MaxLength="10" />
+          <Property Name="Date_sent" Type="date" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="ND" Type="nvarchar(max)" />
+          <Property Name="Solved" Type="bit" />
+          <Property Name="Accepted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Ykien">
+          <Key>
+            <PropertyRef Name="ID_Ykien" />
+          </Key>
+          <Property Name="ID_Ykien" Type="int" Nullable="false" />
+          <Property Name="ID_CD" Type="nvarchar" MaxLength="10" />
+          <Property Name="ID" Type="nvarchar" MaxLength="10" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="ND" Type="nvarchar(max)" />
+          <Property Name="Date_sent" Type="date" />
+        </EntityType>
+        <Association Name="FK_FreeTime_CQTQ">
+          <End Role="CQTQ" Type="Self.CQTQ" Multiplicity="0..1" />
+          <End Role="FreeTime" Type="Self.FreeTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQTQ">
+              <PropertyRef Name="ID_CQTQ" />
+            </Principal>
+            <Dependent Role="FreeTime">
+              <PropertyRef Name="ID_CQTQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idcqtq">
+          <End Role="CQTQ" Type="Self.CQTQ" Multiplicity="0..1" />
+          <End Role="LDVN" Type="Self.LDVN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQTQ">
+              <PropertyRef Name="ID_CQTQ" />
+            </Principal>
+            <Dependent Role="LDVN">
+              <PropertyRef Name="ID_CQTQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lichhen_CDVN">
+          <End Role="CDVN" Type="Self.CDVN" Multiplicity="0..1" />
+          <End Role="Lichhen" Type="Self.Lichhen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CDVN">
+              <PropertyRef Name="ID_CD" />
+            </Principal>
+            <Dependent Role="Lichhen">
+              <PropertyRef Name="ID_CD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lichhen_CQTQ">
+          <End Role="CQTQ" Type="Self.CQTQ" Multiplicity="0..1" />
+          <End Role="Lichhen" Type="Self.Lichhen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQTQ">
+              <PropertyRef Name="ID_CQTQ" />
+            </Principal>
+            <Dependent Role="Lichhen">
+              <PropertyRef Name="ID_CQTQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_nv">
+          <End Role="Nhiemvu" Type="Self.Nhiemvu" Multiplicity="0..1" />
+          <End Role="CQTQ" Type="Self.CQTQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nhiemvu">
+              <PropertyRef Name="Name_CQTQ" />
+            </Principal>
+            <Dependent Role="CQTQ">
+              <PropertyRef Name="Name_CQTQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_qh">
+          <End Role="Quyenhan" Type="Self.Quyenhan" Multiplicity="0..1" />
+          <End Role="LDVN" Type="Self.LDVN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Quyenhan">
+              <PropertyRef Name="Chucvu" />
+            </Principal>
+            <Dependent Role="LDVN">
+              <PropertyRef Name="Chucvu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Thongbao_CDVN">
+          <End Role="CDVN" Type="Self.CDVN" Multiplicity="0..1" />
+          <End Role="Thongbao" Type="Self.Thongbao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CDVN">
+              <PropertyRef Name="ID_CD" />
+            </Principal>
+            <Dependent Role="Thongbao">
+              <PropertyRef Name="ID_CD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Thongbao_CQTQ">
+          <End Role="CQTQ" Type="Self.CQTQ" Multiplicity="0..1" />
+          <End Role="Thongbao" Type="Self.Thongbao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQTQ">
+              <PropertyRef Name="ID_CQTQ" />
+            </Principal>
+            <Dependent Role="Thongbao">
+              <PropertyRef Name="ID_CQTQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yeucau_CDVN">
+          <End Role="CDVN" Type="Self.CDVN" Multiplicity="0..1" />
+          <End Role="Yeucau" Type="Self.Yeucau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CDVN">
+              <PropertyRef Name="ID_CD" />
+            </Principal>
+            <Dependent Role="Yeucau">
+              <PropertyRef Name="ID_1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yeucau_CQTQ">
+          <End Role="CQTQ" Type="Self.CQTQ" Multiplicity="0..1" />
+          <End Role="Yeucau" Type="Self.Yeucau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQTQ">
+              <PropertyRef Name="ID_CQTQ" />
+            </Principal>
+            <Dependent Role="Yeucau">
+              <PropertyRef Name="ID_2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ykien_CDVN">
+          <End Role="CDVN" Type="Self.CDVN" Multiplicity="0..1" />
+          <End Role="Ykien" Type="Self.Ykien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CDVN">
+              <PropertyRef Name="ID_CD" />
+            </Principal>
+            <Dependent Role="Ykien">
+              <PropertyRef Name="ID_CD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PBL3ModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CDVN" EntityType="Self.CDVN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CQTQ" EntityType="Self.CQTQ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FreeTime" EntityType="Self.FreeTime" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LDVN" EntityType="Self.LDVN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lichhen" EntityType="Self.Lichhen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Map" EntityType="Self.Map" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nhiemvu" EntityType="Self.Nhiemvu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Quyenhan" EntityType="Self.Quyenhan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Thongbao" EntityType="Self.Thongbao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yeucau" EntityType="Self.Yeucau" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ykien" EntityType="Self.Ykien" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FreeTime_CQTQ" Association="Self.FK_FreeTime_CQTQ">
+            <End Role="CQTQ" EntitySet="CQTQ" />
+            <End Role="FreeTime" EntitySet="FreeTime" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idcqtq" Association="Self.fk_idcqtq">
+            <End Role="CQTQ" EntitySet="CQTQ" />
+            <End Role="LDVN" EntitySet="LDVN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lichhen_CDVN" Association="Self.FK_Lichhen_CDVN">
+            <End Role="CDVN" EntitySet="CDVN" />
+            <End Role="Lichhen" EntitySet="Lichhen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lichhen_CQTQ" Association="Self.FK_Lichhen_CQTQ">
+            <End Role="CQTQ" EntitySet="CQTQ" />
+            <End Role="Lichhen" EntitySet="Lichhen" />
+          </AssociationSet>
+          <AssociationSet Name="fk_nv" Association="Self.fk_nv">
+            <End Role="Nhiemvu" EntitySet="Nhiemvu" />
+            <End Role="CQTQ" EntitySet="CQTQ" />
+          </AssociationSet>
+          <AssociationSet Name="fk_qh" Association="Self.fk_qh">
+            <End Role="Quyenhan" EntitySet="Quyenhan" />
+            <End Role="LDVN" EntitySet="LDVN" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Thongbao_CDVN" Association="Self.FK_Thongbao_CDVN">
+            <End Role="CDVN" EntitySet="CDVN" />
+            <End Role="Thongbao" EntitySet="Thongbao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Thongbao_CQTQ" Association="Self.FK_Thongbao_CQTQ">
+            <End Role="CQTQ" EntitySet="CQTQ" />
+            <End Role="Thongbao" EntitySet="Thongbao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yeucau_CDVN" Association="Self.FK_Yeucau_CDVN">
+            <End Role="CDVN" EntitySet="CDVN" />
+            <End Role="Yeucau" EntitySet="Yeucau" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yeucau_CQTQ" Association="Self.FK_Yeucau_CQTQ">
+            <End Role="CQTQ" EntitySet="CQTQ" />
+            <End Role="Yeucau" EntitySet="Yeucau" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ykien_CDVN" Association="Self.FK_Ykien_CDVN">
+            <End Role="CDVN" EntitySet="CDVN" />
+            <End Role="Ykien" EntitySet="Ykien" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PBL3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LDVN">
+          <Key>
+            <PropertyRef Name="ID_LD" />
+          </Key>
+          <Property Name="ID_LD" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="HoTenLD" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="NgaySinhLD" Precision="0" Type="DateTime" />
+          <Property Name="DiaChi_LD" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="GioiTinh" MaxLength="3" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Email_LD" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="SDT_LD" MaxLength="11" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Chucvu" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ID_CQTQ" MaxLength="10" FixedLength="false" Unicode="true" Type="String" />
+          <NavigationProperty Name="Quyenhan" Relationship="Self.fk_qh" FromRole="LDVN" ToRole="Quyenhan" />
+          <Property Name="Anh" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="CQTQ" Relationship="PBL3Model.fk_idcqtq" FromRole="LDVN" ToRole="CQTQ" />
+        </EntityType>
+        <EntityType Name="Map">
+          <Key>
+            <PropertyRef Name="ID_Map" />
+          </Key>
+          <Property Name="ID_Map" Nullable="false" Type="Int32" />
+          <Property Name="DiaChi1" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="DiaChi2" MaxLength="30" FixedLength="false" Unicode="true" Type="String" />
+        </EntityType>
+        <EntityType Name="Nhiemvu">
+          <Key>
+            <PropertyRef Name="Name_CQTQ" />
+          </Key>
+          <Property Name="Name_CQTQ" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="NV" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <NavigationProperty Name="CQTQs" Relationship="PBL3Model.fk_nv" FromRole="Nhiemvu" ToRole="CQTQ" />
+        </EntityType>
+        <EntityType Name="Quyenhan">
+          <Key>
+            <PropertyRef Name="Chucvu" />
+          </Key>
+          <Property Name="Chucvu" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="QH" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <NavigationProperty Name="LDVNs" Relationship="Self.fk_qh" FromRole="Quyenhan" ToRole="LDVN" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="principal_id" Nullable="false" Type="Int32" />
+          <Property Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" MaxLength="Max" FixedLength="false" Type="Binary" />
+        </EntityType>
+        <EntityType Name="Thongbao">
+          <Key>
+            <PropertyRef Name="ID_Thongbao" />
+          </Key>
+          <Property Name="ID_Thongbao" Nullable="false" Type="Int32" />
+          <Property Name="ID_CD" MaxLength="10" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ID_CQTQ" MaxLength="10" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Title" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ND" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Date_sent" Precision="0" Type="DateTime" />
+          <NavigationProperty Name="CQTQ" Relationship="PBL3Model.FK_Thongbao_CQTQ" FromRole="Thongbao" ToRole="CQTQ" />
+          <NavigationProperty Name="CDVN" Relationship="PBL3Model.FK_Thongbao_CDVN" FromRole="Thongbao" ToRole="CDVN" />
+        </EntityType>
+        <EntityType Name="Ykien">
+          <Key>
+            <PropertyRef Name="ID_Ykien" />
+          </Key>
+          <Property Name="ID_Ykien" Nullable="false" Type="Int32" />
+          <Property Name="ID_CD" MaxLength="10" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ID" MaxLength="10" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Title" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ND" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Date_sent" Precision="0" Type="DateTime" />
+          <NavigationProperty Name="CDVN" Relationship="PBL3Model.FK_Ykien_CDVN" FromRole="Ykien" ToRole="CDVN" />
+        </EntityType>
+        <Association Name="fk_qh">
+          <End Type="Self.Quyenhan" Multiplicity="0..1" Role="Quyenhan" />
+          <End Type="Self.LDVN" Multiplicity="*" Role="LDVN" />
+          <ReferentialConstraint>
+            <Principal Role="Quyenhan">
+              <PropertyRef Name="Chucvu" />
+            </Principal>
+            <Dependent Role="LDVN">
+              <PropertyRef Name="Chucvu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PBL3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LDVNs" EntityType="Self.LDVN" />
+          <EntitySet Name="Maps" EntityType="Self.Map" />
+          <EntitySet Name="Nhiemvus" EntityType="Self.Nhiemvu" />
+          <EntitySet Name="Quyenhans" EntityType="Self.Quyenhan" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Thongbaos" EntityType="Self.Thongbao" />
+          <EntitySet Name="Ykiens" EntityType="Self.Ykien" />
+          <AssociationSet Name="fk_qh" Association="Self.fk_qh">
+            <End EntitySet="Quyenhans" Role="Quyenhan" />
+            <End EntitySet="LDVNs" Role="LDVN" />
+          </AssociationSet>
+          <EntitySet Name="Accounts" EntityType="PBL3Model.Account" />
+          <EntitySet Name="Yeucaus" EntityType="PBL3Model.Yeucau" />
+          <EntitySet Name="CQTQs" EntityType="PBL3Model.CQTQ" />
+          <AssociationSet Name="fk_idcqtq" Association="PBL3Model.fk_idcqtq">
+            <End Role="CQTQ" EntitySet="CQTQs" />
+            <End Role="LDVN" EntitySet="LDVNs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_nv" Association="PBL3Model.fk_nv">
+            <End Role="Nhiemvu" EntitySet="Nhiemvus" />
+            <End Role="CQTQ" EntitySet="CQTQs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Thongbao_CQTQ" Association="PBL3Model.FK_Thongbao_CQTQ">
+            <End Role="CQTQ" EntitySet="CQTQs" />
+            <End Role="Thongbao" EntitySet="Thongbaos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yeucau_CQTQ" Association="PBL3Model.FK_Yeucau_CQTQ">
+            <End Role="CQTQ" EntitySet="CQTQs" />
+            <End Role="Yeucau" EntitySet="Yeucaus" />
+          </AssociationSet>
+          <EntitySet Name="Lichhens" EntityType="PBL3Model.Lichhen" />
+          <AssociationSet Name="FK_Lichhen_CQTQ" Association="PBL3Model.FK_Lichhen_CQTQ">
+            <End Role="CQTQ" EntitySet="CQTQs" />
+            <End Role="Lichhen" EntitySet="Lichhens" />
+          </AssociationSet>
+          <EntitySet Name="FreeTimes" EntityType="PBL3Model.FreeTime" />
+          <AssociationSet Name="FK_FreeTime_CQTQ" Association="PBL3Model.FK_FreeTime_CQTQ">
+            <End Role="CQTQ" EntitySet="CQTQs" />
+            <End Role="FreeTime" EntitySet="FreeTimes" />
+          </AssociationSet>
+          <EntitySet Name="CDVNs" EntityType="PBL3Model.CDVN" />
+          <AssociationSet Name="FK_Lichhen_CDVN" Association="PBL3Model.FK_Lichhen_CDVN">
+            <End Role="CDVN" EntitySet="CDVNs" />
+            <End Role="Lichhen" EntitySet="Lichhens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Thongbao_CDVN" Association="PBL3Model.FK_Thongbao_CDVN">
+            <End Role="CDVN" EntitySet="CDVNs" />
+            <End Role="Thongbao" EntitySet="Thongbaos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Yeucau_CDVN" Association="PBL3Model.FK_Yeucau_CDVN">
+            <End Role="CDVN" EntitySet="CDVNs" />
+            <End Role="Yeucau" EntitySet="Yeucaus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ykien_CDVN" Association="PBL3Model.FK_Ykien_CDVN">
+            <End Role="CDVN" EntitySet="CDVNs" />
+            <End Role="Ykien" EntitySet="Ykiens" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="account_type" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Yeucau">
+          <Key>
+            <PropertyRef Name="ID_Yeucau" />
+          </Key>
+          <Property Name="ID_Yeucau" Type="Int32" Nullable="false" />
+          <Property Name="ID_1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ID_2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Date_sent" Type="DateTime" Precision="0" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ND" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Solved" Type="Boolean" />
+          <NavigationProperty Name="CQTQ" Relationship="PBL3Model.FK_Yeucau_CQTQ" FromRole="Yeucau" ToRole="CQTQ" />
+          <Property Name="Accepted" Type="Boolean" />
+          <NavigationProperty Name="CDVN" Relationship="PBL3Model.FK_Yeucau_CDVN" FromRole="Yeucau" ToRole="CDVN" />
+        </EntityType>
+        <EntityType Name="CQTQ">
+          <Key>
+            <PropertyRef Name="ID_CQTQ" />
+          </Key>
+          <Property Name="ID_CQTQ" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Name_CQTQ" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LDVNs" Relationship="PBL3Model.fk_idcqtq" FromRole="CQTQ" ToRole="LDVN" />
+          <NavigationProperty Name="Nhiemvu" Relationship="PBL3Model.fk_nv" FromRole="CQTQ" ToRole="Nhiemvu" />
+          <NavigationProperty Name="Thongbaos" Relationship="PBL3Model.FK_Thongbao_CQTQ" FromRole="CQTQ" ToRole="Thongbao" />
+          <NavigationProperty Name="Yeucaus" Relationship="PBL3Model.FK_Yeucau_CQTQ" FromRole="CQTQ" ToRole="Yeucau" />
+          <NavigationProperty Name="Lichhens" Relationship="PBL3Model.FK_Lichhen_CQTQ" FromRole="CQTQ" ToRole="Lichhen" />
+          <NavigationProperty Name="FreeTimes" Relationship="PBL3Model.FK_FreeTime_CQTQ" FromRole="CQTQ" ToRole="FreeTime" />
+        </EntityType>
+        <Association Name="fk_idcqtq">
+          <End Type="PBL3Model.CQTQ" Role="CQTQ" Multiplicity="0..1" />
+          <End Type="PBL3Model.LDVN" Role="LDVN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQTQ">
+              <PropertyRef Name="ID_CQTQ" />
+            </Principal>
+            <Dependent Role="LDVN">
+              <PropertyRef Name="ID_CQTQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_nv">
+          <End Type="PBL3Model.Nhiemvu" Role="Nhiemvu" Multiplicity="0..1" />
+          <End Type="PBL3Model.CQTQ" Role="CQTQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nhiemvu">
+              <PropertyRef Name="Name_CQTQ" />
+            </Principal>
+            <Dependent Role="CQTQ">
+              <PropertyRef Name="Name_CQTQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Thongbao_CQTQ">
+          <End Type="PBL3Model.CQTQ" Role="CQTQ" Multiplicity="0..1" />
+          <End Type="PBL3Model.Thongbao" Role="Thongbao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQTQ">
+              <PropertyRef Name="ID_CQTQ" />
+            </Principal>
+            <Dependent Role="Thongbao">
+              <PropertyRef Name="ID_CQTQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yeucau_CQTQ">
+          <End Type="PBL3Model.CQTQ" Role="CQTQ" Multiplicity="0..1" />
+          <End Type="PBL3Model.Yeucau" Role="Yeucau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQTQ">
+              <PropertyRef Name="ID_CQTQ" />
+            </Principal>
+            <Dependent Role="Yeucau">
+              <PropertyRef Name="ID_2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Lichhen">
+          <Key>
+            <PropertyRef Name="ID_Lichhen" />
+          </Key>
+          <Property Name="ID_Lichhen" Type="Int32" Nullable="false" />
+          <Property Name="ID_CD" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ID_CQTQ" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date_hen" Type="DateTime" Precision="0" />
+          <Property Name="TG" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CQTQ" Relationship="PBL3Model.FK_Lichhen_CQTQ" FromRole="Lichhen" ToRole="CQTQ" />
+          <NavigationProperty Name="CDVN" Relationship="PBL3Model.FK_Lichhen_CDVN" FromRole="Lichhen" ToRole="CDVN" />
+        </EntityType>
+        <Association Name="FK_Lichhen_CQTQ">
+          <End Type="PBL3Model.CQTQ" Role="CQTQ" Multiplicity="0..1" />
+          <End Type="PBL3Model.Lichhen" Role="Lichhen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQTQ">
+              <PropertyRef Name="ID_CQTQ" />
+            </Principal>
+            <Dependent Role="Lichhen">
+              <PropertyRef Name="ID_CQTQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FreeTime">
+          <Key>
+            <PropertyRef Name="ID_FreeTime" />
+          </Key>
+          <Property Name="ID_FreeTime" Type="Int32" Nullable="false" />
+          <Property Name="ID_CQTQ" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Start_time" Type="Time" Precision="7" />
+          <Property Name="End_time" Type="Time" Precision="7" />
+          <Property Name="Max_per" Type="Int32" />
+          <NavigationProperty Name="CQTQ" Relationship="PBL3Model.FK_FreeTime_CQTQ" FromRole="FreeTime" ToRole="CQTQ" />
+        </EntityType>
+        <Association Name="FK_FreeTime_CQTQ">
+          <End Type="PBL3Model.CQTQ" Role="CQTQ" Multiplicity="0..1" />
+          <End Type="PBL3Model.FreeTime" Role="FreeTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQTQ">
+              <PropertyRef Name="ID_CQTQ" />
+            </Principal>
+            <Dependent Role="FreeTime">
+              <PropertyRef Name="ID_CQTQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CDVN">
+          <Key>
+            <PropertyRef Name="ID_CD" />
+          </Key>
+          <Property Name="ID_CD" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="HoTenCD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinhCD" Type="DateTime" Precision="0" />
+          <Property Name="DiaChi_CD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TT_hn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GioiTinh" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Email_CD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SDT_CD" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Chuho" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TATS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Anh" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Noti_count" Type="Int32" />
+          <NavigationProperty Name="Lichhens" Relationship="PBL3Model.FK_Lichhen_CDVN" FromRole="CDVN" ToRole="Lichhen" />
+          <NavigationProperty Name="Thongbaos" Relationship="PBL3Model.FK_Thongbao_CDVN" FromRole="CDVN" ToRole="Thongbao" />
+          <NavigationProperty Name="Yeucaus" Relationship="PBL3Model.FK_Yeucau_CDVN" FromRole="CDVN" ToRole="Yeucau" />
+          <NavigationProperty Name="Ykiens" Relationship="PBL3Model.FK_Ykien_CDVN" FromRole="CDVN" ToRole="Ykien" />
+        </EntityType>
+        <Association Name="FK_Lichhen_CDVN">
+          <End Type="PBL3Model.CDVN" Role="CDVN" Multiplicity="0..1" />
+          <End Type="PBL3Model.Lichhen" Role="Lichhen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CDVN">
+              <PropertyRef Name="ID_CD" />
+            </Principal>
+            <Dependent Role="Lichhen">
+              <PropertyRef Name="ID_CD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Thongbao_CDVN">
+          <End Type="PBL3Model.CDVN" Role="CDVN" Multiplicity="0..1" />
+          <End Type="PBL3Model.Thongbao" Role="Thongbao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CDVN">
+              <PropertyRef Name="ID_CD" />
+            </Principal>
+            <Dependent Role="Thongbao">
+              <PropertyRef Name="ID_CD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Yeucau_CDVN">
+          <End Type="PBL3Model.CDVN" Role="CDVN" Multiplicity="0..1" />
+          <End Type="PBL3Model.Yeucau" Role="Yeucau" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CDVN">
+              <PropertyRef Name="ID_CD" />
+            </Principal>
+            <Dependent Role="Yeucau">
+              <PropertyRef Name="ID_1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ykien_CDVN">
+          <End Type="PBL3Model.CDVN" Role="CDVN" Multiplicity="0..1" />
+          <End Type="PBL3Model.Ykien" Role="Ykien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CDVN">
+              <PropertyRef Name="ID_CD" />
+            </Principal>
+            <Dependent Role="Ykien">
+              <PropertyRef Name="ID_CD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PBL3ModelStoreContainer" CdmEntityContainer="PBL3">
+          <EntitySetMapping Name="LDVNs">
+            <EntityTypeMapping TypeName="PBL3Model.LDVN">
+              <MappingFragment StoreEntitySet="LDVN">
+                <ScalarProperty Name="Anh" ColumnName="Anh" />
+                <ScalarProperty Name="ID_LD" ColumnName="ID_LD" />
+                <ScalarProperty Name="HoTenLD" ColumnName="HoTenLD" />
+                <ScalarProperty Name="NgaySinhLD" ColumnName="NgaySinhLD" />
+                <ScalarProperty Name="DiaChi_LD" ColumnName="DiaChi_LD" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="Email_LD" ColumnName="Email_LD" />
+                <ScalarProperty Name="SDT_LD" ColumnName="SDT_LD" />
+                <ScalarProperty Name="Chucvu" ColumnName="Chucvu" />
+                <ScalarProperty Name="ID_CQTQ" ColumnName="ID_CQTQ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Maps">
+            <EntityTypeMapping TypeName="PBL3Model.Map">
+              <MappingFragment StoreEntitySet="Map">
+                <ScalarProperty Name="ID_Map" ColumnName="ID_Map" />
+                <ScalarProperty Name="DiaChi1" ColumnName="DiaChi1" />
+                <ScalarProperty Name="DiaChi2" ColumnName="DiaChi2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nhiemvus">
+            <EntityTypeMapping TypeName="PBL3Model.Nhiemvu">
+              <MappingFragment StoreEntitySet="Nhiemvu">
+                <ScalarProperty Name="Name_CQTQ" ColumnName="Name_CQTQ" />
+                <ScalarProperty Name="NV" ColumnName="NV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Quyenhans">
+            <EntityTypeMapping TypeName="PBL3Model.Quyenhan">
+              <MappingFragment StoreEntitySet="Quyenhan">
+                <ScalarProperty Name="Chucvu" ColumnName="Chucvu" />
+                <ScalarProperty Name="QH" ColumnName="QH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PBL3Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Thongbaos">
+            <EntityTypeMapping TypeName="PBL3Model.Thongbao">
+              <MappingFragment StoreEntitySet="Thongbao">
+                <ScalarProperty Name="ID_Thongbao" ColumnName="ID_Thongbao" />
+                <ScalarProperty Name="ID_CD" ColumnName="ID_CD" />
+                <ScalarProperty Name="ID_CQTQ" ColumnName="ID_CQTQ" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ND" ColumnName="ND" />
+                <ScalarProperty Name="Date_sent" ColumnName="Date_sent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ykiens">
+            <EntityTypeMapping TypeName="PBL3Model.Ykien">
+              <MappingFragment StoreEntitySet="Ykien">
+                <ScalarProperty Name="ID_Ykien" ColumnName="ID_Ykien" />
+                <ScalarProperty Name="ID_CD" ColumnName="ID_CD" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ND" ColumnName="ND" />
+                <ScalarProperty Name="Date_sent" ColumnName="Date_sent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="PBL3Model.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="account_type" ColumnName="account_type" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yeucaus">
+            <EntityTypeMapping TypeName="PBL3Model.Yeucau">
+              <MappingFragment StoreEntitySet="Yeucau">
+                <ScalarProperty Name="Accepted" ColumnName="Accepted" />
+                <ScalarProperty Name="Solved" ColumnName="Solved" />
+                <ScalarProperty Name="ND" ColumnName="ND" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Date_sent" ColumnName="Date_sent" />
+                <ScalarProperty Name="ID_2" ColumnName="ID_2" />
+                <ScalarProperty Name="ID_1" ColumnName="ID_1" />
+                <ScalarProperty Name="ID_Yeucau" ColumnName="ID_Yeucau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CQTQs">
+            <EntityTypeMapping TypeName="PBL3Model.CQTQ">
+              <MappingFragment StoreEntitySet="CQTQ">
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="TT" ColumnName="TT" />
+                <ScalarProperty Name="Name_CQTQ" ColumnName="Name_CQTQ" />
+                <ScalarProperty Name="ID_CQTQ" ColumnName="ID_CQTQ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lichhens">
+            <EntityTypeMapping TypeName="PBL3Model.Lichhen">
+              <MappingFragment StoreEntitySet="Lichhen">
+                <ScalarProperty Name="TG" ColumnName="TG" />
+                <ScalarProperty Name="Date_hen" ColumnName="Date_hen" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="ID_CQTQ" ColumnName="ID_CQTQ" />
+                <ScalarProperty Name="ID_CD" ColumnName="ID_CD" />
+                <ScalarProperty Name="ID_Lichhen" ColumnName="ID_Lichhen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FreeTimes">
+            <EntityTypeMapping TypeName="PBL3Model.FreeTime">
+              <MappingFragment StoreEntitySet="FreeTime">
+                <ScalarProperty Name="Max_per" ColumnName="Max_per" />
+                <ScalarProperty Name="End_time" ColumnName="End_time" />
+                <ScalarProperty Name="Start_time" ColumnName="Start_time" />
+                <ScalarProperty Name="ID_CQTQ" ColumnName="ID_CQTQ" />
+                <ScalarProperty Name="ID_FreeTime" ColumnName="ID_FreeTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CDVNs">
+            <EntityTypeMapping TypeName="PBL3Model.CDVN">
+              <MappingFragment StoreEntitySet="CDVN">
+                <ScalarProperty Name="Noti_count" ColumnName="Noti_count" />
+                <ScalarProperty Name="Anh" ColumnName="Anh" />
+                <ScalarProperty Name="TATS" ColumnName="TATS" />
+                <ScalarProperty Name="ID_Chuho" ColumnName="ID_Chuho" />
+                <ScalarProperty Name="SDT_CD" ColumnName="SDT_CD" />
+                <ScalarProperty Name="Email_CD" ColumnName="Email_CD" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="TT_hn" ColumnName="TT_hn" />
+                <ScalarProperty Name="DiaChi_CD" ColumnName="DiaChi_CD" />
+                <ScalarProperty Name="NgaySinhCD" ColumnName="NgaySinhCD" />
+                <ScalarProperty Name="HoTenCD" ColumnName="HoTenCD" />
+                <ScalarProperty Name="ID_CD" ColumnName="ID_CD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
